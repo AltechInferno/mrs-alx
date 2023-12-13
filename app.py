@@ -3,6 +3,7 @@ import streamlit as st
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
+#spotify api keys
 CLIENT_ID = "70a9fb89662f4dac8d07321b259eaad7"
 CLIENT_SECRET = "4d6710460d764fbbb8d8753dc094d131"
 
@@ -37,16 +38,19 @@ def recommend(song):
 
     return recommended_music_names,recommended_music_posters
 
-st.header('MRS - ALX PROJECT')
+#we set the header
+st.header('Recommendx')
 music = pickle.load(open('df.pkl','rb'))
 similarity = pickle.load(open('similarity.pkl','rb'))
 
+#the list of recommended songs
 music_list = music['song'].values
 selected_movie = st.selectbox(
     "Type or select a song from the dropdown",
     music_list
 )
 
+#show recommendation button
 if st.button('Show Recommendation'):
     recommended_music_names,recommended_music_posters = recommend(selected_movie)
     col1, col2, col3, col4, col5= st.columns(5)
